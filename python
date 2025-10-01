@@ -1,0 +1,22 @@
+commands = {
+    "ls": ["execve", "openat", "read", "write", "close"],
+    "cat /etc/passwd": ["execve", "openat", "read", "write", "close"],
+    "echo 'Hello World'": ["execve", "write", "close", "exit_group"],
+    "touch newfile.txt": ["execve", "openat", "futimens", "close"]
+}
+
+explanations = {
+    "execve": "Жаңа процесті іске қосу",
+    "openat": "Файлды немесе каталогты ашу/құру",
+    "read": "Файлдан оқу",
+    "write": "Файлға немесе экранға жазу",
+    "close": "Файл дескрипторын жабу",
+    "futimens": "Файлдың уақыт атрибуттарын өзгерту",
+    "exit_group": "Процесті аяқтау"
+}
+
+for cmd, syscalls in commands.items():
+    print(f"\nКоманда: {cmd}")
+    print("Жиі кездесетін жүйелік шақырулар:")
+    for sc in syscalls:
+        print(f" - {sc}: {explanations[sc]}")
